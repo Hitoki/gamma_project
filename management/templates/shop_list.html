@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Shops
+{% endblock %}
+
+{% block main %}
+    <h1>SS</h1>>
+    {% for shop in shop_list %}
+        <div class="post">
+            {% if shop.trademark == 'SS' %}
+                <h2><a href="{{ shop.id }}">{{ shop.name }}</a></h2>
+            {% endif %}
+        </div>
+    {% endfor %}
+    <h1>SW</h1>>
+    {% for shop in shop_list %}
+        <div class="post">
+            {% if shop.trademark == 'SW' %}
+                <h2><a href="{{ shop.id }}">{{ shop.name }}</a></h2>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock %}

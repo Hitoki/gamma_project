@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Person
+{% endblock %}
+
+{% block main %}
+
+    <div class="post">
+        <h2>{{ staff.first_name }} {{ staff.last_name }}</h2>
+        <table class='table'>  
+            <thead>
+                <tr>
+                    <th>Магазин</th>
+                    <th>Дата</th>
+                    <th>Отработанные часы</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for work in staff.works.all %}
+                    <tr>
+                        <td>{{ work.shop.name }}</td>
+                        <td>{{ work.date }}</td>
+                        <td>{{ work.hours }}</td>
+                    </tr>                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
