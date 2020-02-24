@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Staff
+{% endblock %}
+
+{% block main %}
+    {% for person in staff_list %}
+        <div class="post">
+            <h2><a href="{{ person.id }}">{{ person.first_name }} {{ person.last_name }}</a></h2>
+        </div>
+    {% endfor %}
+{% endblock %}

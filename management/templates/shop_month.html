@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Shop
+{% endblock %}
+
+{% block main %}
+
+    <div class="post">
+        <h2>{{ shop.name }}</h2>
+        <table class='table'>  
+            <thead>
+                <tr>
+                    <th>Статья расходов</th>
+                    <th>Дата</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for act in shop.acts.all %}
+                    <tr>
+                        <td>{{ act.cost.name }}</td>
+                        <td>{{ act.date }}</td>
+                        <td>{{ act.amount }}</td>
+                    </tr>                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
