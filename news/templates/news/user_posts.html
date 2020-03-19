@@ -1,0 +1,76 @@
+{% extends "home/base.html" %}
+{% block main %}
+<main role="main" class="container mt-2">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="blue-text btn btn-outline-green btn-md">Author: {{ view.kwargs.username }}</h1>
+            <h1 class="blue-text btn btn-outline-green btn-md">Amount of Posts: {{ page_obj.paginator.count }}</h1>
+            {% for post in posts %}
+            <article class="media content-section" style="
+                                background: #ffffff;
+                                padding: 10px 20px;
+                                border: 1px solid #dddddd;
+                                border-radius: 3px;
+                                margin-bottom: 20px;">
+                <div class="media-body">
+                    <div class="article-metadata" style="
+                                    padding-bottom: 1px;
+                                    margin-bottom: 4px;
+                                    border-bottom: 1px solid #e3e3e3">
+
+                        <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+                    </div>
+                    <h2><a class="article-title" href="{% url 'post-detail' post.id %}" style="color: #444444;">
+                        {{ post.title }}</a></h2>
+                    <img src="{{ post.image.url }}" alt="" style="width: 666px; height: 400px;">
+                    <p class="article-content mt-4 my-2">{{ post.content }}</p>
+                    <div class="border-top">
+                        <a href="{{ post.get_absolute_url }}addlike" class="btn btn-green btn-sm mt-2"><i class="fa fa-thumbs-up"></i><span> {{ post.likes }}</span></a>
+                        <a href="{{ post.get_absolute_url }}adddislike" class="btn btn-danger btn-sm mt-2"><i class="fa fa-thumbs-down"></i><span> {{ post.dislikes }}</span></a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+            {% if is_paginated %}
+            <div class="container text-center">
+                {% if page_obj.has_previous %}
+                    <a class="btn btn-outline-green btn-sm mb-4" href="?page=1">First</a>
+                    <a class="btn btn-outline-green btn-sm mb-4" href="{{ page_obj.previous_page_number }}">Previous</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <a class="btn btn-green btn-sm mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+                        <a class="btn btn-outline-green btn-sm mb-4" href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a class="btn btn-outline-green btn-sm mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    <a class="btn btn-outline-green btn-sm mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <div class="content-section mt-4" style="
+                            background: #ffffff;
+                            padding: 10px 20px;
+                            border: 1px solid #dddddd;
+                            border-radius: 3px;
+                            margin-bottom: 20px;">
+                <h3>Our Sidebar</h3>
+                <p class='text-muted'>You can put any information here you'd like.
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Latest Posts</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">Calendars</li>
+                    <li class="list-group-item list-group-item-light">etc</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock main %}

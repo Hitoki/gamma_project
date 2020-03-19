@@ -1,0 +1,30 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block main %}
+    <main role="main" class="container mt-2">
+        <div class="row">
+            <div class="content-section col-md-8 mt-2" style="width: 1000px; height: 500px">
+                <h2>You have been logged out</h2>
+                <div class="border-top pt-3 mb-4">
+                    <small class="text-muted">
+                        <a href="{% url 'login' %}" class="green-text">Log In Again</a>
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="content-section mt-2">
+                    <h3>Our Sidebar</h3>
+                    <p class='text-muted'>You can put any information here you'd like.
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-light">Latest Posts</li>
+                        <li class="list-group-item list-group-item-light">Announcements</li>
+                        <li class="list-group-item list-group-item-light">Calendars</li>
+                        <li class="list-group-item list-group-item-light">etc</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+{% endblock main %}

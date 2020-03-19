@@ -1,0 +1,38 @@
+{% extends "home/base.html" %}
+{% block main %}
+    <main>
+        <div class="mt-2 container">
+            <article class="media content-section" style="
+                            background: #ffffff;
+                            padding: 10px 20px;
+                            border: 1px solid #dddddd;
+                            border-radius: 3px;
+                            margin-bottom: 20px;">
+                <div class="media-body">
+                    <div class="article-metadata" style="
+                                padding-bottom: 1px;
+                                margin-bottom: 4px;
+                                border-bottom: 1px solid #e3e3e3">
+                        <small class="btn btn-outline-green btn-sm ml-5">{{ object.category }}</small>
+                    </div>
+                    <h2 style="color: #444444;" class="article-title ml-5 mt-4 mb-3">{{ object.title }}</h2>
+                    <div class="row">
+                        <div class="col ml-5">
+                            <img src="{{ product.image.url }}" class="d-inline-flex mb-5" alt=""
+                                 style="width: 381px; height: 499px;">
+                        </div>
+                        <div class="col">
+                            <h1 class="article-content mt-4 my-2">{{ object.book_author }}</h1>
+                            <p class="article-content">{{ object.description }}</p>
+                            <h2 class="article-content mt-4 my-2 border d-inline-block px-2 py-2 ml-2 border-light">{{ object.price }}$</h2>
+                            <br>
+                            <a href="{{ object.get_absolute_url }} add_boughted_book ">
+                                <button class="btn btn-green" type="submit">Buy Now</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+{% endblock main %}

@@ -1,0 +1,108 @@
+{% extends "home/base.html" %}
+{% block main %}
+<main>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="container" style="height: 800px; width: 1000px;">
+        <nav class="navbar navbar-expand-lg navbar-dark lighten-3 mt-3 mb-5" style="background: #0b2e13">
+            <span class="navbar-brand">Categories:</span>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-targer="#nextNav"
+                    aria-controls="nextNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+            <div class="collapse navbar-collapse" id="nextNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}" class="nav-link">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}?category=CLS" class="nav-link">Classic</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}?category=CAD" class="nav-link active">Crime and Detective</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}?category=DRA" class="nav-link">Drama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}?category=RMC" class="nav-link">Romance</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}?category=HRR" class="nav-link">Horror</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}?category=WRC" class="nav-link">Warcraft</a>
+                    </li>
+                </ul>
+                <form class="form-inline" action="{% url 'store' %}">
+                    <div class="md-form my-0">
+                        <input type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" name="search">
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+        <section class="text-center mb-4">
+            <div class="row wow fadeIn">
+                {% for product in products %}
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card">
+                        <div class="view overlay">
+                            <img class="card-img-top" src="{{ product.image.url }}" alt="Shirt" style="height: 300px;">
+                            <a href="#">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="text-muted"> {{ product.book_author }}</h5>
+                            <h5><strong>
+                                <a href="#" class="dark-grey-text">{{ product.title }}</a>
+                            </strong></h5>
+                            <h4 class="fort-weight-bold green-text mt-3">
+                                <strong>{{ product.price }}$</strong>
+                            </h4>
+                        </div>
+                        <a href="{% url 'product-detail' product.id %}">
+                            <button class="btn btn-green">Learn More</button>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        {% if is_paginated %}
+        <div class="container text-center">
+            {% if page_obj.has_previous %}
+            <a class="btn btn-outline-green btn-sm mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-green btn-sm mb-4" href="{{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+            <a class="btn btn-green btn-sm mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %}
+            <a class="btn btn-outline-green btn-sm mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a class="btn btn-outline-green btn-sm mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-green btn-sm mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock main %}

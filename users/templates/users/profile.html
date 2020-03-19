@@ -1,0 +1,72 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block main %}
+<main role="main" class="container mt-2" style="height: auto">
+    <div class="row">
+        <div class="col-md-8">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} my-1 text-center">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="content-section mt-2" style="background: #ffffff;
+                                                padding: 10px 20px;
+                                                border: 1px solid #dddddd;
+                                                border-radius: 3px;
+                                                margin-bottom: 20px;">
+                <div class="media">
+                    <img class="rounded-circle account-img" src="{{user.profile.image.url}}" style="height: 125px;
+                                                                                        width: 125px;
+                                                                                        margin-right: 20px;
+                                                                                        margin-bottom: 16px;">
+                    <div class="media-body">
+                        <h2 class="account-heading" style="font-size: 2.5rem;">{{user.username}}</h2>
+                        <p class="green-text">{{user.email}}</p>
+                    </div>
+                </div>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Profile Info</legend>
+                        {{ u_form|crispy }}
+                        {% if user.profile.boughted_books.all.count != 0 %}
+                            <p>
+                                Boughted Books <i class="fa fa-book-open grey-text"></i> :
+                                {% for book in user.profile.boughted_books.all %}
+                                    <a href="{% url 'product-detail' book.id %}" class="btn btn-sm btn-outline-green green-text">{{ book }}</a>
+                                {% endfor %}
+                            </p>
+                        {% else %}
+                                <p>Boughted Books <i class="fa fa-book-open grey-text"></i> : You have not bought any books yet</p>
+                        {% endif %}
+                        {{ p_form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-green" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="content-section mt-2" style="
+                            background: #ffffff;
+                            padding: 10px 20px;
+                            border: 1px solid #dddddd;
+                            border-radius: 3px;
+                            margin-bottom: 20px;">
+                <h3>Our Sidebar</h3>
+                <p class='text-muted'>You can put any information here you'd like.
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Latest Posts</li>
+                    <li class="list-group-item list-group-item-light">Announcements</li>
+                    <li class="list-group-item list-group-item-light">Calendars</li>
+                    <li class="list-group-item list-group-item-light">etc</li>
+                </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock main %}

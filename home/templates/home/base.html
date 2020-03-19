@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Books Club</title>
+    <!-- MDB icon -->
+    <!--    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">-->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body style="color: #333333; background: #fafafa">
+<!-- NAVBAR -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark scrolling-navbar" style="background: #0b2e13">
+        <div class="container">
+            <a href="{% url 'home' %}" class="navbar-brand"><i class="fa fa-book-open mr-2"></i>Book Club</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle Navigation">
+                  <span class="navbar-toggler-icon">
+                  </span>
+            </button>
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <ul class="navbar-nav mr-auto smooth-scroll">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link waves-effect waves-light">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'store' %}" class="nav-link waves-effect waves-light">Store</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'news' %}" class="nav-link waves-effect waves-light">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}#contact" class="nav-link waves-effect waves-light">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link waves-effect waves-light" data-toggle="modal"
+                           data-target="#exampleModal">About us</a>
+                    </li>
+                </ul>
+                <!--                MODAL-->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">About us</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>This project was created by Nikita Kurushin for Hillel IT School</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-outline-success" data-dismiss="modal" aria-hidden="true">Ok
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--                MODALEND-->
+            </div>
+        </div>
+        <div class="mr-4">
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <ul class="navbar-nav mr-auto smooth-scroll">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <img src="{{ user.profile.image.url }}" class="mr-2" alt=""
+                                 style="height: 40px; width: 40px; border-radius: 50%">
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'profile' %}" class="nav-link waves-effect waves-light">Profile</a>
+                        </li>
+                        {% if user.is_superuser %}
+                            <li class="nav-item">
+                                <a href="{% url 'post-create' %}" class="nav-link waves-effect waves-light">Create&nbsp;Post</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a href="{% url 'logout' %}" class="nav-link waves-effect waves-light">Logout</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'login' %}" class="nav-link waves-effect waves-light">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'register' %}" class="nav-link waves-effect waves-light">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ENDNAVBAR -->
+    <!--    MAIN CONTENT    -->
+    {% block main %}{% endblock %}
+    <!--    MAIN_CONTENT_END    -->
+    <!--FOOTER-->
+    <footer class="page-footer font-small pt-0" style="background: #0b2e13">
+        <div style="background: #0b2e13">
+            <div class="container">
+                <div class="row py-4 d-flex align-items-center">
+                    <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+                        <h6 class="mb-0 white-text">Get connected with us on social networks!</h6>
+                    </div>
+                    <div class="col md-6 col-lg-7 text-center text-md-right">
+                        <a href="https://www.facebook.com/profile.php?id=100023517788030" class="fb-ic ml-0">
+                            <i class="fab fa-facebook mr-4"></i>
+                        </a>
+                        <a href="https://www.instagram.com/doctorfl3x/" class="fb-ic ml-0">
+                            <i class="fab fa-instagram mr-4"></i>
+                        </a>
+                        <a href="https://twitter.com/?lang=ru" class="fb-ic ml-0">
+                            <i class="fab fa-twitter mr-4"></i>
+                        </a>
+                        <a href="https://github.com/Malbec21" class="fb-ic ml-0">
+                            <i class="fab fa-github mr-4"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/malbec21/" class="fb-ic ml-0">
+                            <i class="fab fa-linkedin mr-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5 mb-4 text-center text-md-left">
+            <div class="row mt-3">
+                <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+                    <h6 class="text-uppercase font-weight-bold" style="color: white"><strong>Our Company</strong></h6>
+                    <hr class="white accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi assumenda eius sint?</p>
+                </div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold" style="color: white"><strong>Products</strong></h6>
+                    <hr class="white accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p><a href="#"></a>Product 1</p>
+                    <p><a href="#"></a>Product 2</p>
+                    <p><a href="#"></a>Product 3</p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                    <h6 class="text-uppercase font-weight-bold" style="color: white"><strong>Links</strong></h6>
+                    <hr class="white accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p><a href="#"></a>Account</p>
+                    <p><a href="#"></a>Help</p>
+                    <p><a href="#"></a>Lorem.</p>
+                </div>
+                <div class="col-md-4 col-lg-3 col-xl-3">
+                    <h6 class="text-uppercase font-weight-bold" style="color: white"><strong>Contact</strong></h6>
+                    <hr class="white accent-1 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                    <p><i class="fa fa-home mr-3"></i>Kharkiv</p>
+                    <p><i class="fa fa-envelope mr-3"></i>info@gmail.com</p>
+                    <p><i class="fa fa-phone mr-3"></i>+ 38 068 000 17 42</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery -->
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+    <!-- Your custom scripts (optional) -->
+    <script type="text/javascript"></script>
+</body>
+</html>

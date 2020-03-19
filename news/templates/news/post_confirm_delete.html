@@ -1,0 +1,34 @@
+{% extends "home/base.html" %}
+{% block main %}
+    <main role="main" class="container mt-2">
+        <div class="row">
+            <div class="content-section col-md-8 mt-2" style="width: 1000px; height: 500px">
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <fieldset class="form-group">
+                        <legend class="border-bottom mb-4">Delete Post</legend>
+                        <h2>Are you sure you want to delete the post "{{ object.title }}"?</h2>
+                    </fieldset>
+                    <div class="form-group">
+                        <a class="btn btn-grey" href="{% url 'post-detail' object.id %}">Cancel</a>
+                        <button class="btn btn-danger" type="submit">Yes, Delete</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Our Sidebar</h3>
+                    <p class='text-muted'>You can put any information here you'd like.
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-light">Latest Posts</li>
+                        <li class="list-group-item list-group-item-light">Announcements</li>
+                        <li class="list-group-item list-group-item-light">Calendars</li>
+                        <li class="list-group-item list-group-item-light">etc</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+{% endblock main %}

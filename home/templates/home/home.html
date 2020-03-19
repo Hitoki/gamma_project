@@ -1,0 +1,162 @@
+{% extends "home/base.html" %}
+{% block main %}
+    <div id="intro" class="view mb-5">
+        <div class="mask rgba-black-strong">
+            <div class="container-fluid d-flex align-items-center justify-content-center h-100">
+                <div class="row d-flex justify-content-center text-center">
+                    <div class="col-md-10">
+                        <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">
+                            Book Club Presentation
+                        </h2>
+                        <hr class="hr-light">
+                        <h4 class="white-text my-4">Knowledge - is power!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main class="mt-5">
+        <div class="container">
+            <section id="best-features" class="text-center">
+                <div class="row d-flex justify-content-center mb-4">
+                    <div class="col-md-8">
+                        <h2 class="mt-5 font-weight-bold">Best Site Features</h2>
+                        <p class="grey-text">In this category of our site we will talk about its advantages and
+                            functionality.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <i class="fa fa-store fa-4x grey-text"></i>
+                        <h4 class="my-4 font-weight-bold">Store</h4>
+                        <p>In this part of the site you can find your favorite writers for yourself, buy their books and
+                            then download directly from the site, and the books you read will also be displayed on your
+                            profile.</p>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <i class="fab fa-python fa-4x grey-text"></i>
+                        <h4 class="my-4 font-weight-bold">Django Admin</h4>
+                        <p>In this part of the site, you can enter the site as an administrator, which will allow you to
+                            manage users, the news feed, and the store.</p>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <i class="fa fa-newspaper fa-4x grey-text"></i>
+                        <h4 class="my-4 font-weight-bold">News</h4>
+                        <p>In this part of the site you can view the news feed about your favorite writers, their life
+                            story
+                            and their works, which you can also buy in our store.</p>
+                    </div>
+                </div>
+            </section>
+            <hr class="my-5" id="contact">
+            <!--Section: Contact v.1-->
+            <section class="section pb-5">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} my-1 text-center">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <!--Section heading-->
+                <h2 class="section-heading h1 pt-4 text-center my-5">Contact us</h2>
+                <!--Section description-->
+
+                <div class="row">
+
+                    <!--Grid column-->
+                    <div class="col-lg-5 mb-4">
+
+                        <!--Form with header-->
+                        <div class="card">
+
+                            <div class="card-body">
+                                <!--Header-->
+                                <div class="form-header green-text">
+                                    <h3><i class="fas fa-envelope green-text"></i> Contact us:</h3>
+                                </div>
+
+                                <p>We'll write rarely, but with only the best content.</p>
+                                <br>
+
+                                <!--Body-->
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="md-form">
+                                        <i class="fas fa-user prefix grey-text"></i>
+                                        <input type="text" id="form-name" class="form-control" name="name">
+                                        <label for="form-name">Your name</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fas fa-envelope prefix grey-text"></i>
+                                        <input type="text" id="form-email" class="form-control" name="email">
+                                        <label for="form-email">Your email</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fas fa-tag prefix grey-text"></i>
+                                        <input type="text" id="form-Subject" class="form-control" name="subject">
+                                        <label for="form-Subject">Subject</label>
+                                    </div>
+
+                                    <div class="md-form">
+                                        <i class="fas fa-pencil-alt prefix grey-text"></i>
+                                        <textarea id="form-text" class="form-control md-textarea" rows="3"
+                                                  name="message"></textarea>
+                                        <label for="form-text">Your message</label>
+                                    </div>
+
+                                    <div class="text-center mt-4">
+                                        <button class="btn btn-green" type="submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!--Form with header-->
+
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-lg-7">
+
+                        <!--Google map-->
+                        <div id="map-container-google-11" class="z-depth-1-half map-container-6" style="height: 400px">
+                            <iframe src="https://maps.google.com/maps?q=hillel%20&t=&z=12&ie=UTF8&iwloc=&output=embed"
+                                    frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+
+                        <br>
+                        <!--Buttons-->
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <i class="fa fa-map fa-1x mr-2 green-text"></i>
+                                <p>Kharkiv</p>
+                                <p>Ukraine</p>
+                            </div>
+
+                            <div class="col-md-4">
+                                <i class="fa fa-phone fa-1x mr-2 green-text"></i>
+                                <p>+ 38 068 000 17 42</p>
+                                <p>Mon - Fri, 8:00-22:00</p>
+                            </div>
+
+                            <div class="col-md-4">
+                                <i class="fa fa-envelope fa-1x mr-2 green-text"></i>
+                                <p>info@gmail.com</p>
+                                <p>sale@gmail.com</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+
+            </section>
+            <!--Section: Contact v.1-->
+        </div>
+    </main>
+{% endblock main %}
