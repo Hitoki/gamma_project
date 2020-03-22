@@ -89,7 +89,7 @@ def add_like(request, pk):
         post.likes += 1
         post.users_likes_list.add(request.user)
         post.save()
-    return redirect('news')
+    return redirect(post.get_absolute_url())
 
 
 @login_required
@@ -99,4 +99,4 @@ def add_dislike(request, pk):
         post.dislikes += 1
         post.users_likes_list.add(request.user)
         post.save()
-    return redirect('news')
+    return redirect(post.get_absolute_url())

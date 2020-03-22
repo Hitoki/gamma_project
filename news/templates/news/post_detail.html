@@ -16,8 +16,10 @@
                                 border-bottom: 1px solid #e3e3e3">
                         <a class="mr-2" href="{% url 'user-posts' object.author.username %}">{{ post.author }}</a>
                         <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+                        {% if post.author == user %}
                             <a href="{% url 'post-update' object.id %}" class="btn btn-grey btn-sm mt-1"><i class="fa fa-wrench mr-1"></i>Update</a>
                             <a href="{% url 'post-delete' object.id %}" class="btn btn-danger btn-sm mt-1"><i class="fa fa-trash mr-1"></i>Delete</a>
+                        {% endif %}
                     </div>
                     <h2 style="color: #444444;" class="article-title">{{ object.title }}</h2>
                     <img src="{{ post.image.url }}" alt="" style="width: 666px; height: 400px;">

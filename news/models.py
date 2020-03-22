@@ -12,7 +12,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='posts_pics')
     likes = models.IntegerField(verbose_name='like', default=0)
     dislikes = models.IntegerField(verbose_name='dislike', default=0)
-    users_likes_list = models.ManyToManyField(User, related_name="userslikeslist")
+    users_likes_list = models.ManyToManyField(User, related_name="userslikeslist", blank=True)
     epoch = models.ForeignKey("Epoch", on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
