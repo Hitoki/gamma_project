@@ -12,16 +12,18 @@
             <thead>
                 <tr>
                     <th>Статья расходов</th>
-                    <th>Дата</th>
-                    <th>Сумма</th>
-                </tr>
+                    {% for date in data.1.days.keys %}
+                        <th>{{ date }}</th>
+                    {% endfor %}
+                    </tr>
             </thead>
             <tbody>
-                {% for act in shop.acts.all %}
+                {% for cost in data.values %}
                     <tr>
-                        <td>{{ act.cost.name }}</td>
-                        <td>{{ act.date }}</td>
-                        <td>{{ act.amount }}</td>
+                        <td>{{ cost.name }}</td>
+                        {% for day in cost.days.values %}
+                            <td>{{ day.amount__sum|floatformat:2|default:"0" }}</td>
+                        {% endfor %}
                     </tr>                
                 {% endfor %}
             </tbody>

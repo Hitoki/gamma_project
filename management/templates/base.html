@@ -7,10 +7,16 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/music.css' %}">
+        <link rel="stylesheet" href="{% static 'css/management.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <title>Management: {% block title %}{% endblock %}</title>
     </head>
     <body>
+        <div class="topnav">
+            <a href="/management">Shops</a>
+            <a href="/management/staff">Staff</a>
+            <a href="/management/report">Reports</a>
+        </div>
         <main>
             <div class="content container">
                 <div class="row">

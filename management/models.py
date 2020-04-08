@@ -19,7 +19,7 @@ class Staff(models.Model):
 
 class Schedule(models.Model):
     shop = models.ForeignKey('Shop', on_delete=models.CASCADE,)
-    staff_member = models.ForeignKey('Staff', on_delete=models.CASCADE, related_name='works')
+    staff_member = models.ForeignKey('Staff', on_delete=models.CASCADE)
     date = models.DateField('working day')
     hours = models.PositiveIntegerField()
 
@@ -45,7 +45,7 @@ class Cost_type(models.Model):
 
 class ActivityLog(models.Model):
     date = models.DateField('day')
-    shop = models.ForeignKey('Shop', on_delete=models.CASCADE, related_name='acts')
+    shop = models.ForeignKey('Shop', on_delete=models.CASCADE)
     cost = models.ForeignKey('Cost', on_delete=models.CASCADE,)
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     staff_member = models.ForeignKey('Staff', on_delete=models.CASCADE,)

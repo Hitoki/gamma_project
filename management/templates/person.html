@@ -17,7 +17,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for work in staff.works.all %}
+                {% for work in staff.schedule_set.all %}
                     <tr>
                         <td>{{ work.shop.name }}</td>
                         <td>{{ work.date }}</td>
