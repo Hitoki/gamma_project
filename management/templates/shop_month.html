@@ -8,6 +8,17 @@
 
     <div class="post">
         <h2>{{ shop.name }}</h2>
+
+        <div class="pagination">
+            <a href="/management/{{ shop.id }}/{{ month_delta|add:1 }}">Предыдущий месяц</a>
+            
+            <span>{{ month }}</span>
+            
+            {% if month_delta > 0 %}
+                <a href="/management/{{ shop.id }}/{{ month_delta|add:-1 }}">Следующий месяц</a>
+            {% endif %}
+        </div>
+
         <table class='table'>  
             <thead>
                 <tr>

@@ -106,3 +106,5 @@ try:
     from .local import *
 except ImportError:
     pass
+
+LOGIN_REDIRECT_URL = '/management'

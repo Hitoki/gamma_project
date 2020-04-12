@@ -5,21 +5,20 @@
 {% endblock %}
 
 {% block main %}
-    <h1>SS</h1>>
-    {% for shop in shop_list %}
-        <div class="post">
+    <div class="post">
+        <h1>SS</h1>>
+        {% for shop in shop_list %}
             {% if shop.trademark == 'SS' %}
-                <h2><a href="{{ shop.id }}">{{ shop.name }}</a></h2>
+                <h2><a href="{{ shop.id }}/0">{{ shop.name }}</a></h2>
             {% endif %}
-        </div>
-    {% endfor %}
-    <h1>SW</h1>>
-    {% for shop in shop_list %}
-        <div class="post">
+        {% endfor %}
+    </div>
+    <div class="post">
+        <h1>SW</h1>>
+        {% for shop in shop_list %}
             {% if shop.trademark == 'SW' %}
-                <h2><a href="{{ shop.id }}">{{ shop.name }}</a></h2>
+                <h2><a href="{{ shop.id }}/0">{{ shop.name }}</a></h2>
             {% endif %}
-        </div>
-    {% endfor %}
-
+        {% endfor %}
+    </div>
 {% endblock %}

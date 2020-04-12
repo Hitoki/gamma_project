@@ -8,6 +8,7 @@
 
     <form id='report-form' action='.' method="post" oninput="cash.value=parseFloat(revenue.value)-parseFloat(cashless.value)" onchange="finish_cash.value=parseFloat(begin_cash.value)+parseFloat(cash.value)">
         {% csrf_token %}
+        <input id='csrf_token' value='{{ csrf_token }}' hidden>
 
         <h2 id="shop" type='text'>{{ shop.name }}</h2>
         <input id='shop_id' value='{{ shop.id }}' hidden>
@@ -53,46 +54,5 @@
         </div>
 
         <input id='report-button' type="button" value="Записать отчет">
-    </form>
-
-    <script>
-            $("#report-button").on('click', function(event){
-                var content = [{
-                        'staff': $('#staff_member')[0].value,
-                        'amount': $('#cashless')[0].value,
-                        'cost': '2',
-                        'day': $('#day')[0].value,
-                        'shop': $('#shop_id')[0].value
-                    },
-                    {
-                        'staff': $('#staff_member')[0].value,
-                        'amount': $('#cash')[0].value,
-                        'cost': '1',
-                        'day': $('#day')[0].value,
-                        'shop': $('#shop_id')[0].value
-                    },
-                    {
-                        'staff': $('#staff_member')[0].value,
-                        'amount': $('#finish_cash')[0].value,
-                        'cost': '6',
-                        'day': $('#day')[0].value,
-                        'shop': $('#shop_id')[0].value
-                    }];
-                var data = {
-                    'content': JSON.stringify(content),
-                    'csrfmiddlewaretoken': '{{ csrf_token }}'
-                };
-                console.log('data:', data);
-                $.ajax({
-                    data: data,
-                    type: "POST",
-                    dataType: 'json',
-                    url: "/management/api/",
-                    success: function(result){
-                        $("#report-form").html('Data entered successfully');
-                    }
-                })
-            });
-    </script>
-    
+    </form>    
 {% endblock %}
